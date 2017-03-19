@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "727942395832",
+    "firebase_url": "https://scribacollege.firebaseio.com",
+    "project_id": "scribacollege",
+    "storage_bucket": "scribacollege.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727942395832:android:6efe4b452eea5dae",
+        "android_client_info": {
+          "package_name": "com.example.scriba.scribacollege"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727942395832-t2osq40llu5685d3ik6p0r2h6ldm6ple.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWLOfNPos_OQ_0G-zZE0Oe7L7-3kDl8hA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
