@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.scriba.scribacollege.WebViewActivity">
+    tools:context="com.example.scriba.scribacollege.activity.WebViewActivity">
 
     <include layout="@layout/content_web_view" />
 

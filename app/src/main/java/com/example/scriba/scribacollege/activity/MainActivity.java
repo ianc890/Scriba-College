@@ -1,4 +1,4 @@
-package com.example.scriba.scribacollege;
+package com.example.scriba.scribacollege.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -25,6 +25,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.scriba.scribacollege.FilePath;
+import com.example.scriba.scribacollege.R;
 
 import net.sf.andpdf.pdfviewer.PdfViewerActivity;
 

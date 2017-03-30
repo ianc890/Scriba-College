@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -30,18 +30,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity
-            android:name=".FilesActivity"
+            android:name=".activity.FilesActivity"
             android:label="@string/title_activity_files"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".WebViewActivity"
+            android:name=".activity.WebViewActivity"
             android:label="@string/title_activity_web_view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FingerPaint" />
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".activity.Main2Activity" />
+        <activity android:name=".activity.SignupActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.ResetPasswordActivity" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.UploadActivity" />
+        <activity android:name=".activity.MyFilesActivity"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,6 @@
-package com.example.scriba.scribacollege;
+package com.example.scriba.scribacollege.activity;
+
+import com.example.scriba.scribacollege.R;
 
 public class Main2Activity extends net.sf.andpdf.pdfviewer.PdfViewerActivity {
 

@@ -1,4 +1,4 @@
-package com.example.scriba.scribacollege;
+package com.example.scriba.scribacollege.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
+
+import com.example.scriba.scribacollege.Downloader;
+import com.example.scriba.scribacollege.R;
 
 public class FilesActivity extends AppCompatActivity {
 
