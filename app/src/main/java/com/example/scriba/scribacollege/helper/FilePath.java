@@ -1,4 +1,4 @@
-package com.example.scriba.scribacollege;
+package com.example.scriba.scribacollege.helper;
 
 import android.content.ContentUris;
 import android.content.Context;

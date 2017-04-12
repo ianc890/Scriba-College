@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "727942395832-soujd4f69co1nq5oafoju5cv042fm9gv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.scriba.scribacollege",
+            "certificate_hash": "fc445c37f450693ca4c08531e34912b0a7fb026b"
+          }
+        },
+        {
           "client_id": "727942395832-t2osq40llu5685d3ik6p0r2h6ldm6ple.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727942395832-t2osq40llu5685d3ik6p0r2h6ldm6ple.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

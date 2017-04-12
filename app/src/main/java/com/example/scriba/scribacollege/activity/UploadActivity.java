@@ -24,7 +24,6 @@ import com.example.scriba.scribacollege.model.Upload;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -79,18 +78,18 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        authListener = new FirebaseAuth.AuthStateListener() {
+        /*authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(UploadActivity.this, LoginActivity.class));
+                    startActivity(new Intent(UploadActivity.this, LoginActivityTwo.class));
                     finish();
                 }
             }
-        };
+        };*/
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 

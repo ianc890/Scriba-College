@@ -1,112 +1,162 @@
 package com.example.scriba.scribacollege.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.scriba.scribacollege.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.scriba.scribacollege.config.Config;
+import com.example.scriba.scribacollege.model.User;
+import com.example.scriba.scribacollege.util.HashUtil;
+
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText inputEmail, inputPassword;
-    private FirebaseAuth auth;
-    private ProgressBar progressBar;
-    private Button btnSignup, btnLogin, btnReset;
+    //Defining views
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private AppCompatButton buttonLogin;
+
+    //boolean variable to check user is logged in or not
+    //initially it is false
+    private boolean loggedIn = false;
+
+    private User user;
+    private Config config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
-
-        //if user is already logged in, redirect to landing activity
-        if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
-        }
-
-        //set the view
         setContentView(R.layout.activity_login);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        inputEmail = (EditText) findViewById(R.id.email);
-        inputPassword = (EditText) findViewById(R.id.password);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        btnSignup = (Button) findViewById(R.id.btn_signup);
-        btnLogin = (Button) findViewById(R.id.btn_login);
-        btnReset = (Button) findViewById(R.id.btn_reset_password);
+        CookieManager cookieManager = new CookieManager();
+        CookieHandler.setDefault(cookieManager);
 
-        btnSignup.setOnClickListener(new View.OnClickListener() {
+        //Initializing views
+        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+
+        buttonLogin = (AppCompatButton) findViewById(R.id.buttonLogin);
+
+        //Adding click listener
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+                //Calling the login function
+                login();
             }
         });
 
-        btnReset.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
+    }
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //In onresume fetching value from sharedpreference
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        //Fetching the boolean value form sharedpreferences
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+
+        //If we will get true
+        if(loggedIn){
+            //We will start the Profile Activity
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void login(){
+        //Getting values from edit texts
+        final String email = editTextEmail.getText().toString();
+        final String password = editTextPassword.getText().toString();
+        final String encryptedPassword = HashUtil.sha256(password);
+
+        //Creating a string request
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.LOGIN_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //If we are getting success from server
+                        if(response.equalsIgnoreCase(Config.LOGIN_SUCCESS)){
+                            //Creating a shared preference
+                            SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+                            //Creating editor to store values to shared preferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            //Adding values to editor
+                            editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+                            editor.putString(Config.EMAIL_SHARED_PREF, email);
+
+                            //Saving values to editor
+                            editor.commit();
+
+                            Log.d("HereFirst", email);
+
+                            //Starting profile activity
+                            Intent intent = new Intent(LoginActivity.this, UploadActivity.class);
+                            startActivity(intent);
+                        }else{
+                            //If the server response is not success
+                            //Displaying an error message on toast
+                            Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //You can handle error here if you want
+                    }
+                }){
             @Override
-            public void onClick(View v) {
-                String email = inputEmail.getText().toString();
-                final String password = inputPassword.getText().toString();
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                //Adding parameters to request
+                params.put(Config.KEY_EMAIL, email);
+                params.put(Config.KEY_PASSWORD, encryptedPassword);
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                progressBar.setVisibility(View.VISIBLE);
-
-                //authenticate user
-                auth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                progressBar.setVisibility(View.GONE);
-                                if (!task.isSuccessful()) {
-                                    // there was an error
-                                    if (password.length() < 6) {
-                                        inputPassword.setError(getString(R.string.minimum_password));
-                                    } else {
-                                        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-                                    }
-                                } else {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
-                        });
+                //returning parameter
+                return params;
             }
-        });
+        };
+
+        //Adding the string request to the queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

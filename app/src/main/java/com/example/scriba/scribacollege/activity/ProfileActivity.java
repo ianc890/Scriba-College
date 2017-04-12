@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                    startActivity(new Intent(ProfileActivity.this, LoginActivityTwo.class));
                     finish();
                 }
             }
@@ -220,7 +220,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(ProfileActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(ProfileActivity.this, SignupActivity.class));
+                                        startActivity(new Intent(ProfileActivity.this, SignupActivity2.class));
                                         finish();
                                         progressBar.setVisibility(View.GONE);
                                     } else {

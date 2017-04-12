@@ -26,7 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.scriba.scribacollege.FilePath;
+import com.example.scriba.scribacollege.helper.FilePath;
 import com.example.scriba.scribacollege.R;
 
 import net.sf.andpdf.pdfviewer.PdfViewerActivity;
@@ -277,33 +277,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void openFile() {
-
-        /*Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("application/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);*/
-
-        // special intent for Samsung file manager
-       // Intent sIntent = new Intent("com.sec.android.app.myfiles.PICK_DATA");
-        // if you want any file type, you can skip next line
-       // sIntent.putExtra("CONTENT_TYPE",  "*/*");
-        //sIntent.addCategory(Intent.CATEGORY_DEFAULT);
-
-       /* Intent chooserIntent;
-        if (getPackageManager().resolveActivity(sIntent, 0) != null){
-            // it is device with samsung file manager
-            chooserIntent = Intent.createChooser(sIntent, "Open file");
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { intent});
-        }
-        else {
-            chooserIntent = Intent.createChooser(intent, "Open file");
-        }
-
-        try {
-            startActivityForResult(chooserIntent, PICK_FILE_REQUEST);
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(getApplicationContext(), "No suitable File Manager was found.", Toast.LENGTH_SHORT).show();
-        }*/
-
         int PICKFILE_RESULT_CODE=1;
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
@@ -435,8 +408,6 @@ public class MainActivity extends AppCompatActivity
                 dataOutputStream.flush();
                 dataOutputStream.close();
 
-
-
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
@@ -456,10 +427,7 @@ public class MainActivity extends AppCompatActivity
             dialog.dismiss();
             return serverResponseCode;
         }
-
     }
 
     ////////
-
-
 }

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/content_main"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        tools:context="com.example.scriba.scribacollege.activity.SignupActivity"
+        tools:showIn="@layout/activity_signup">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4sp"
+            android:layout_marginTop="4sp">
+
+            <EditText
+                android:id="@+id/editTextFirstname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Firstname" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4sp"
+            android:layout_marginTop="4sp">
+
+            <EditText
+                android:id="@+id/editTextSurname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Surname" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4sp"
+            android:layout_marginTop="4sp">
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4sp"
+            android:layout_marginTop="4sp">
+
+            <EditText
+                android:id="@+id/editTextUsername"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Usename" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4sp"
+            android:layout_marginTop="4sp">
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/buttonRegister"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Register" />
+
+        <TextView
+            android:id="@+id/clickableURL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10sp"
+            android:autoLink="web"
+            android:text="Already Registered, Login"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.ActionMode;
 import android.view.View;
 import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -92,15 +91,6 @@ public class WebViewActivity extends Activity {
         public void onPageFinished(WebView view, String url) {
             // TODO Auto-generated method stub
             super.onPageFinished(view, url);
-
-        }
-    }
-
-    public class MyWebChromeClient extends WebChromeClient {
-
-        public void onSelectionStart(WebView view) {
-            // Parent class aborts the selection, which seems like a terrible default.
-            //Log.i("DroidGap", "onSelectionStart called");
         }
     }
 }
