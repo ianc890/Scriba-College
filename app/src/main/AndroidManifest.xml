@@ -19,7 +19,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,8 +43,11 @@
         <activity android:name=".activity.Main2Activity" />
         <activity android:name=".activity.ResetPasswordActivity" />
         <activity android:name=".activity.ProfileActivity" />
-        <activity android:name=".activity.UploadActivity" />
         <activity android:name=".activity.MyFilesActivity" />
+        <activity
+            android:name=".activity.UploadActivity"
+            android:label="@string/title_activity_upload"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
