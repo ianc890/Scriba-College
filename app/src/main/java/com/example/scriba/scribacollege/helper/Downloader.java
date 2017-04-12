@@ -55,21 +55,20 @@ public class Downloader extends AsyncTask<Void, Integer, String> {
 
         pd.dismiss();
 
-        if(s != null){
+        if (s != null) {
             Parser p = new Parser(context, lv, s);
             p.execute();
-        }else{
+        } else {
             Toast.makeText(context, "Unable to Retrieve Files", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private String downloadData()
-    {
+    private String downloadData() {
         //connect and get a stream
         InputStream is = null;
         String line = null;
 
-        try{
+        try {
             URL url = new URL(address);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             is = new BufferedInputStream(con.getInputStream());
@@ -78,13 +77,13 @@ public class Downloader extends AsyncTask<Void, Integer, String> {
 
             StringBuffer sb = new StringBuffer();
 
-            if(br != null) {
+            if (br != null) {
 
-                while((line = br.readLine()) != null) {
-                    sb.append(line+"\n");
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
                 }
 
-            }else {
+            } else {
                 return null;
             }
 
@@ -94,8 +93,8 @@ public class Downloader extends AsyncTask<Void, Integer, String> {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if(is != null){
+        } finally {
+            if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {

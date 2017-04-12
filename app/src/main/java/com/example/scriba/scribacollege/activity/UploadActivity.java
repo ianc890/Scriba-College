@@ -45,7 +45,6 @@ public class UploadActivity extends AppCompatActivity
     private static final int PICK_FILE_REQUEST = 1;
     private static final String TAG = UploadActivity.class.getSimpleName();
     private String selectedFilePath;
-    private String SERVER_URL = "http://ianc.x10host.com/ScribaCollege/testing/UploadToServer.php";
     ImageView ivAttachment;
     Button bUpload;
     TextView tvFileName;
@@ -268,7 +267,7 @@ public class UploadActivity extends AppCompatActivity
         }else{
             try{
                 FileInputStream fileInputStream = new FileInputStream(selectedFile);
-                URL url = new URL(SERVER_URL);
+                URL url = new URL(Config.UPLOAD_URL);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);//Allow Inputs
                 connection.setDoOutput(true);//Allow Outputs

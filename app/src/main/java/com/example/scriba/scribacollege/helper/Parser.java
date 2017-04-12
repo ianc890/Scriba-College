@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.scriba.scribacollege.activity.WebViewActivity;
+import com.example.scriba.scribacollege.config.Config;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +31,6 @@ public class Parser extends AsyncTask<Void, Integer, Integer> {
 
     String name;
     String filename;
-    private String SERVER_URL = "http://ianc.x10host.com/ScribaCollege/uploads/";
 
     ArrayList<String> files  = new ArrayList<>();
     ProgressDialog pd;
@@ -78,7 +78,7 @@ public class Parser extends AsyncTask<Void, Integer, Integer> {
 
                     context.startActivity(intent);*/
 
-                    String doc=""+SERVER_URL + files.get(position);
+                    String doc=""+ Config.SERVER_URL + files.get(position);
 
                     //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(doc));
                     //context.startActivity(browserIntent);
