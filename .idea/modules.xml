@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ScribaCollege.iml" filepath="$PROJECT_DIR$/ScribaCollege.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nrf-toolbox/nrf-toolbox.iml" filepath="$PROJECT_DIR$/nrf-toolbox/nrf-toolbox.iml" />
     </modules>
   </component>
 </project>
