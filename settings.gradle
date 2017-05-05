@@ -1,1 +1,1 @@
-include ':app', ':nrf-toolbox'
+include ':app', ':wear', ':common', ':nrf-lib'

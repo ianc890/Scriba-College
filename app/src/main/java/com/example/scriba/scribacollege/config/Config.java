@@ -16,6 +16,12 @@ public class Config {
 
     public static final String RETRIEVE_URL = "http://ianc.x10host.com/ScribaCollege/testing/RetrieveFromServer.php";
 
+    public static final String RETRIEVE_FILES_URL = "http://ianc.x10host.com/ScribaCollege/testing/getFiles.php";
+
+    public static final String INSERT_NOTE_URL = "http://ianc.x10host.com/ScribaCollege/testing/insertNote.php";
+
+    public static final String RETRIEVE_NOTES_URL = "http://ianc.x10host.com/ScribaCollege/testing/getNotes.php";
+
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";

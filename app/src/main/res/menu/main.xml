@@ -6,4 +6,18 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/bluetooth"
+        android:title="@string/connect_scriba"
+        app:showAsAction="ifRoom"
+        android:icon="@mipmap/ic_bluetooth_white_24dp"
+        android:onClick="bluetooth"/>
+
+    <item
+        android:id="@+id/notes"
+        android:title="View Notes"
+        app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_view"
+        android:onClick="viewNotes"/>
 </menu>

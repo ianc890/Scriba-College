@@ -29,6 +29,7 @@ public class Parser extends AsyncTask<Void, Integer, Integer> {
     ListView lv;
     String data;
 
+    int fileId;
     String name;
     String filename;
 
@@ -113,8 +114,11 @@ public class Parser extends AsyncTask<Void, Integer, Integer> {
             for(int i = 0; i < ja.length(); i++){
                 jo = ja.getJSONObject(i);
 
+                // retrieve file id
+                fileId= jo.getInt("id");
+
                 //retrieve name
-                name = jo.getString("path");
+                name = jo.getString("filepath");
 
                 //String path=":/storage/sdcard0/DCIM/Camera/1414240995236.jpg";//it contain your path of image..im using a temp string..
                 filename=name.substring(name.lastIndexOf("/")+1);

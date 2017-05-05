@@ -52,5 +52,12 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_upload">UploadActivity</string>
+    <string name="title_activity_upload">Upload</string>
+    <string name="my_files">My Files</string>
+    <string name="title_files">Files</string>
+    <string name="share_with">Share with</string>
+    <string name="connect_scriba">Connect Scriba</string>
+    <string name="title_activity_quiz_questions">Create Question</string>
+    <string name="title_activity_quiz">Quiz</string>
+    <string name="title_activity_notes">NotesActivity</string>
 </resources>

@@ -8,9 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
+import com.example.scriba.scribacollege.R;
 import com.example.scriba.scribacollege.config.Config;
 import com.example.scriba.scribacollege.helper.Downloader;
-import com.example.scriba.scribacollege.R;
 
 public class FilesActivity extends AppCompatActivity {
 

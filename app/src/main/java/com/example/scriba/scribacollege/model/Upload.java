@@ -1,12 +1,9 @@
 package com.example.scriba.scribacollege.model;
 
-import com.google.firebase.database.IgnoreExtraProperties;
-
 /**
  * Created by Ian C on 30/03/2017.
  */
 
-@IgnoreExtraProperties
 public class Upload{
 
     public String name;

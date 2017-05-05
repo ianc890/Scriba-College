@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     //Defining views
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private TextView textViewRegister;
     private AppCompatButton buttonLogin;
 
     //boolean variable to check user is logged in or not
@@ -59,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         //Initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        textViewRegister = (TextView) findViewById(R.id.linkSignup);
 
         buttonLogin = (AppCompatButton) findViewById(R.id.buttonLogin);
 
@@ -68,6 +71,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Calling the login function
                 login();
+            }
+        });
+
+        textViewRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -94,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         //If we will get true
         if(loggedIn){
             //We will start the Profile Activity
-            Intent intent = new Intent(this, ProfileActivity.class);
+            Intent intent = new Intent(this, UploadActivity.class);
             startActivity(intent);
         }
     }

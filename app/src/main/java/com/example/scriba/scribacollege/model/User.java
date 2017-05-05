@@ -6,7 +6,7 @@ package com.example.scriba.scribacollege.model;
 
 public class User {
 
-    private String firstname, surname, email, username, password;
+    private String firstname, surname, email, username, password, encryptedPassword;
 
     public User(String firstname, String surname, String email, String username, String password) {
         this.firstname = firstname;
@@ -14,6 +14,10 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public User() {
+
     }
 
     public String getFirstname() {
@@ -54,5 +58,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEncryptedPassword() {
+        return encryptedPassword;
+    }
+
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
     }
 }

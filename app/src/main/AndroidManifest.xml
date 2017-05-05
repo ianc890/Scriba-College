@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.scriba.scribacollege">
+
+    <uses-sdk tools:overrideLibrary="no.nordicsemi.android.scriba,         com.google.android.gms.wearable,com.google.android.gms.base,         com.google.android.gms,no.nordicsemi.android.support.v18.scanner,no.nordicsemi.android.log,         no.nordicsemi.android.scriba.common,no.nordicsemi.android.dfu" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,7 +21,8 @@
         android:icon="@mipmap/scriba_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/ScribaCollegeAppTheme"
+        tools:replace="android:theme">
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,24 +34,37 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/ScribaCollegeAppTheme.NoActionBar" />
         <activity
             android:name=".activity.FilesActivity"
             android:label="@string/title_activity_files"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/ScribaCollegeAppTheme.NoActionBar" />
         <activity
             android:name=".activity.WebViewActivity"
             android:label="@string/title_activity_web_view"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/ScribaCollegeAppTheme.NoActionBar" />
         <activity android:name=".FingerPaint" />
         <activity android:name=".activity.Main2Activity" />
-        <activity android:name=".activity.ResetPasswordActivity" />
         <activity android:name=".activity.ProfileActivity" />
-        <activity android:name=".activity.MyFilesActivity" />
+        <activity
+            android:name=".activity.MyFilesActivity"
+            android:label="@string/title_files" />
         <activity
             android:name=".activity.UploadActivity"
             android:label="@string/title_activity_upload"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/ScribaCollegeAppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.QuizQuestionsActivity"
+            android:label="@string/title_activity_quiz_questions"
+            android:theme="@style/ScribaCollegeAppTheme" />
+        <activity
+            android:name=".activity.QuizActivity"
+            android:label="@string/title_activity_quiz"
+            android:theme="@style/ScribaCollegeAppTheme" />
+        <activity
+            android:name=".activity.NotesActivity"
+            android:label="@string/title_activity_notes"
+            android:theme="@style/ScribaCollegeAppTheme"></activity>
     </application>
 
 </manifest>
