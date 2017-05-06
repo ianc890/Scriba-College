@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scriba.scribacollege.R;
+import com.example.scriba.scribacollege.config.Config;
 import com.example.scriba.scribacollege.helper.Register;
 import com.example.scriba.scribacollege.model.User;
 import com.example.scriba.scribacollege.util.HashUtil;
@@ -31,8 +32,6 @@ public class SignupActivity extends AppCompatActivity {
     private Button buttonRegister;
 
     private TextView myClickableUrl;
-
-    private static final String REGISTER_URL = "http://ianc.x10host.com/ScribaCollege/testing/register.php";
 
     private User user;
     private Register register;
@@ -123,7 +122,7 @@ public class SignupActivity extends AppCompatActivity {
                 data.put("username",params[3]);
                 data.put("password",params[4]);
 
-                String result = reg.sendPostRequest(REGISTER_URL,data);
+                String result = reg.sendPostRequest(Config.REGISTER_URL,data);
 
                 return result;
             }

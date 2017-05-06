@@ -10,6 +10,8 @@ public class Config {
 
     public static final String SERVER_URL = "http://ianc.x10host.com/ScribaCollege/testing/uploads/";
 
+    public static final String REGISTER_URL = "http://ianc.x10host.com/ScribaCollege/testing/register.php";
+
     public static final String LOGIN_URL = "http://ianc.x10host.com/ScribaCollege/testing/login.php";
 
     public static final String UPLOAD_URL = "http://ianc.x10host.com/ScribaCollege/testing/UploadToServer.php";
@@ -21,6 +23,11 @@ public class Config {
     public static final String INSERT_NOTE_URL = "http://ianc.x10host.com/ScribaCollege/testing/insertNote.php";
 
     public static final String RETRIEVE_NOTES_URL = "http://ianc.x10host.com/ScribaCollege/testing/getNotes.php";
+
+    public static final String INSERT_QUESTION_URL = "http://ianc.x10host.com/ScribaCollege/testing/insertQuestion.php";
+
+    public static final String RETRIEVE_QUESTIONS_URL = "http://ianc.x10host.com/ScribaCollege/testing/getQuestions.php";
+
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_EMAIL = "email";

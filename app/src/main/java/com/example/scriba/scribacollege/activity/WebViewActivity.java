@@ -179,9 +179,25 @@ public class WebViewActivity extends AppCompatActivity {
             case R.id.notes:
                 viewNotes(item);
                 return true;
+            case R.id.createQuestion:
+                createQuestion(item);
+                return true;
+            case R.id.quiz:
+                takeQuiz(item);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void takeQuiz(MenuItem item) {
+        Intent intent= new Intent(this, QuizActivity.class);
+        startActivity(intent);
+    }
+
+    public void createQuestion(MenuItem item) {
+        Intent intent= new Intent(this, QuizQuestionsActivity.class);
+        startActivity(intent);
     }
 
     public void bluetooth(MenuItem item) {

@@ -56,7 +56,10 @@ public class NotesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         file = (File)getIntent().getSerializableExtra(WebViewActivity.SER_KEY);
+        this.setTitle("Notes ("+file.getFilename()+")");
 
         list = (ListView) findViewById(R.id.notes_listview);
         notesList = new ArrayList<>();

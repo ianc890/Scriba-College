@@ -20,4 +20,16 @@
         app:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_menu_view"
         android:onClick="viewNotes"/>
+
+    <item
+        android:id="@+id/quizQuestion"
+        android:title="Create Quiz Questions"
+        app:showAsAction="never"
+        android:onClick="createQuestion"/>
+
+    <item
+        android:id="@+id/quiz"
+        android:title="Take Quiz"
+        app:showAsAction="never"
+        android:onClick="takeQuiz"/>
 </menu>
