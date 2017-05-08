@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by Ian C on 12/04/2017.
+ * @author Ian Cunningham
  */
 
 public class HashUtil {

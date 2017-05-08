@@ -46,7 +46,7 @@ public class UploadActivity extends AppCompatActivity
     private static final String TAG = UploadActivity.class.getSimpleName();
     private String selectedFilePath;
     ImageView ivAttachment;
-    Button bUpload;
+    Button buttonUpload;
     TextView tvFileName;
     ProgressDialog dialog;
 
@@ -62,10 +62,10 @@ public class UploadActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         ivAttachment = (ImageView) findViewById(R.id.ivAttachment);
-        bUpload = (Button) findViewById(R.id.b_upload);
+        buttonUpload = (Button) findViewById(R.id.b_upload);
         tvFileName = (TextView) findViewById(R.id.tv_file_name);
         ivAttachment.setOnClickListener(this);
-        bUpload.setOnClickListener(this);
+        buttonUpload.setOnClickListener(this);
 
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         email = sharedPreferences.getString(Config.EMAIL_SHARED_PREF,"Not Available");
@@ -195,27 +195,23 @@ public class UploadActivity extends AppCompatActivity
     public void onClick(View view) {
         if(view == ivAttachment){
 
-            //on attachment icon click
+            // click show file chooser on attachment icon click
             showFileChooser();
         }
-        if(view == bUpload){
+        if(view == buttonUpload){
 
-            //on upload button Click
+            // if a file path is selected on upload button Click, upload file
             if(selectedFilePath != null){
-                // if(selectedFilePath.contains(" ")){
-                //  nameAlert();
-                // } else {
-                //selectedFilePath = selectedFilePath.replace(" ", "");
                 dialog = ProgressDialog.show(UploadActivity.this, "", "Uploading File...", true);
 
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        //creating new thread to handle Http Operations
+                        // new thread to handle Http Operations
+                        // invoke upload file method
                         uploadFile(selectedFilePath);
                     }
                 }).start();
-                // }
             }else{
                 Toast.makeText(UploadActivity.this,"Please choose a File First", Toast.LENGTH_SHORT).show();
             }
@@ -237,10 +233,6 @@ public class UploadActivity extends AppCompatActivity
     }
 
     private void showFileChooser() {
-        openFile();
-    }
-
-    public void openFile() {
         int PICKFILE_RESULT_CODE=1;
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
@@ -275,7 +267,11 @@ public class UploadActivity extends AppCompatActivity
         }
     }
 
-    //android upload file to server
+    /*
+     * method that uploads file to server
+     * @param selectedFilePath
+     * @return serverResponseCode
+     */
     public int uploadFile(final String selectedFilePath){
 
         int serverResponseCode = 0;

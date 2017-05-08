@@ -1,7 +1,7 @@
 package com.example.scriba.scribacollege.model;
 
 /**
- * Created by Ian C on 05/05/2017.
+ * @author Ian Cunningham
  */
 
 public class QuizQuestion {
@@ -10,6 +10,10 @@ public class QuizQuestion {
     private String question;
     private String optionOne, optionTwo, optionThree, optionFour;
     private String answer;
+
+    public QuizQuestion() {
+
+    }
 
     public QuizQuestion(String subject, String question, String optionOne, String optionTwo, String optionThree, String optionFour, String answer) {
         this.subject = subject;

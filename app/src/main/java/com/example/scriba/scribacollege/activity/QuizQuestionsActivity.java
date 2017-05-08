@@ -19,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.scriba.scribacollege.R;
 import com.example.scriba.scribacollege.config.Config;
+import com.example.scriba.scribacollege.model.QuizQuestion;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -88,13 +89,15 @@ public class QuizQuestionsActivity extends AppCompatActivity {
 
     private void createQuizQuestion(){
 
-        final String subject = editTextSubject.getText().toString();
-        final String question = editTextQuestion.getText().toString();
-        final String optionOne = editTextOptionOne.getText().toString();
-        final String optionTwo = editTextOptionTwo.getText().toString();
-        final String optionThree = editTextOptionThree.getText().toString();
-        final String optionFour = editTextOptionFour.getText().toString();
-        final String answer = editTextAnswer.getText().toString();
+        final QuizQuestion quizQuestion = new QuizQuestion();
+
+        quizQuestion.setSubject(editTextSubject.getText().toString());
+        quizQuestion.setQuestion(editTextQuestion.getText().toString());
+        quizQuestion.setOptionOne(editTextOptionOne.getText().toString());
+        quizQuestion.setOptionTwo(editTextOptionTwo.getText().toString());
+        quizQuestion.setOptionThree(editTextOptionThree.getText().toString());
+        quizQuestion.setOptionFour(editTextOptionFour.getText().toString());
+        quizQuestion.setAnswer(editTextAnswer.getText().toString());
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.INSERT_QUESTION_URL,
                 new Response.Listener<String>() {
@@ -113,13 +116,13 @@ public class QuizQuestionsActivity extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put(KEY_SUBJECT, subject);
-                params.put(KEY_QUESTION, question);
-                params.put(KEY_OPTION_ONE, optionOne);
-                params.put(KEY_OPTION_TWO, optionTwo);
-                params.put(KEY_OPTION_THREE, optionThree);
-                params.put(KEY_OPTION_FOUR, optionFour);
-                params.put(KEY_ANSWER, answer);
+                params.put(KEY_SUBJECT, quizQuestion.getSubject());
+                params.put(KEY_QUESTION, quizQuestion.getQuestion());
+                params.put(KEY_OPTION_ONE, quizQuestion.getOptionOne());
+                params.put(KEY_OPTION_TWO, quizQuestion.getOptionTwo());
+                params.put(KEY_OPTION_THREE, quizQuestion.getOptionThree());
+                params.put(KEY_OPTION_FOUR, quizQuestion.getOptionFour());
+                params.put(KEY_ANSWER, quizQuestion.getAnswer());
                 return params;
             }
 

@@ -102,7 +102,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(SignupActivity.this, "Please Wait",null, true, true);
+                loading = ProgressDialog.show(SignupActivity.this, "Please Wait", "Processing", true, true);
             }
 
             @Override

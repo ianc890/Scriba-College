@@ -108,7 +108,7 @@ public class NotesActivity extends AppCompatActivity {
                 notesMap.put(TAG_FILE_ID, String.valueOf(fileId));
 
 
-                    Note note = new Note(content, createdAt, fileId);
+                Note note = new Note(content, createdAt, fileId);
                 Log.e("HERE", file.getId()+"---------------"+fileId);
                 if(file.getId() == fileId) {
                     notesList.add(note);
