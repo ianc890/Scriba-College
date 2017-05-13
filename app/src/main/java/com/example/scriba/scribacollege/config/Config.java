@@ -1,7 +1,7 @@
 package com.example.scriba.scribacollege.config;
 
 /**
- * Created by Ian C on 12/04/2017.
+ * @author Ian Cunningham
  */
 
 public class Config {
@@ -28,6 +28,11 @@ public class Config {
 
     public static final String RETRIEVE_QUESTIONS_URL = "http://ianc.x10host.com/ScribaCollege/testing/getQuestions.php";
 
+    public static final String CREATE_STUDY_PLAN_URL = "http://ianc.x10host.com/ScribaCollege/testing/createStudyPlan.php";
+
+    public static final String RETRIEVE_STUDY_PLAN_URL = "http://ianc.x10host.com/ScribaCollege/testing/retrieveStudyPlan.php";
+
+    public static final String RETRIEVE_SUBJECTS_URL = "http://ianc.x10host.com/ScribaCollege/testing/getSubjects.php";
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_EMAIL = "email";

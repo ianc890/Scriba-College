@@ -1,10 +1,9 @@
 package com.example.scriba.scribacollege.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,6 +47,8 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         editTextSubject = (EditText) findViewById(R.id.editTextSubject);
         editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
         editTextOptionOne = (EditText) findViewById(R.id.editTextOptionOne);
@@ -66,15 +67,21 @@ public class QuizQuestionsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed(); // closes the current activity and returns to previous activity in the lifecycle
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     private void clearText(TextView subject, TextView question, TextView optionOne, TextView optionTwo, TextView optionThree, TextView optionFour, TextView answer) {
@@ -89,16 +96,24 @@ public class QuizQuestionsActivity extends AppCompatActivity {
 
     private void createQuizQuestion(){
 
-        final QuizQuestion quizQuestion = new QuizQuestion();
+        final String subject = editTextSubject.getText().toString();
+        final String question = editTextQuestion.getText().toString();
+        final String optionOne = editTextOptionOne.getText().toString();
+        final String optionTwo = editTextOptionTwo.getText().toString();
+        final String optionThree = editTextOptionThree.getText().toString();
+        final String optionFour = editTextOptionFour.getText().toString();
+        final String answer = editTextAnswer.getText().toString();
 
-        quizQuestion.setSubject(editTextSubject.getText().toString());
+        final QuizQuestion quizQuestion = new QuizQuestion(subject, question, optionOne, optionTwo, optionThree, optionFour, answer);
+
+        /*quizQuestion.setSubject(editTextSubject.getText().toString());
         quizQuestion.setQuestion(editTextQuestion.getText().toString());
         quizQuestion.setOptionOne(editTextOptionOne.getText().toString());
         quizQuestion.setOptionTwo(editTextOptionTwo.getText().toString());
         quizQuestion.setOptionThree(editTextOptionThree.getText().toString());
         quizQuestion.setOptionFour(editTextOptionFour.getText().toString());
         quizQuestion.setAnswer(editTextAnswer.getText().toString());
-
+*/
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.INSERT_QUESTION_URL,
                 new Response.Listener<String>() {
                     @Override

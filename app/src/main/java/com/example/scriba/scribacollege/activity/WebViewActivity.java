@@ -88,34 +88,97 @@ public class WebViewActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                web.evaluateJavascript("(document.getElementById(\"page-container\").onclick = function() {\n" +
-                        "\t\t// Get Selection\n" +
-                        "    sel = window.getSelection();\n" +
-                        "    if (sel.rangeCount && sel.getRangeAt) {\n" +
-                        "        range = sel.getRangeAt(0);\n" +
-                        "    }\n" +
-                        "    // Set design mode to on\n" +
-                        "    document.designMode = \"on\";\n" +
-                        "    if (range) {\n" +
-                        "        sel.removeAllRanges();\n" +
-                        "        sel.addRange(range);\n" +
-                        "    }\n" +
-                        "    // Colorize text\n" +
-                        "    document.execCommand(\"BackColor\", false, \"red\");\n" +
-                        "    // Set design mode to off\n" +
-                        "    document.designMode = \"off\";\n" +
-                        "    \n" +
-                        "    return window.getSelection().toString();\n" +
-                        "    })()" ,new ValueCallback<String>() {
-                    @Override
-                    public void onReceiveValue(String selectedText) {
-                        Log.d("LogName", selectedText); //s is NOT empty!
-                        content = selectedText;
 
-                        Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
-                    }}
-                );
-                addNote(content);
+                if(HRSActivity.mHrmValue <= 900 && HRSActivity.mHrmValue > 600) {
+                    web.evaluateJavascript("(document.getElementById(\"page-container\").onclick = function() {\n" +
+                            "\t\t// Get Selection\n" +
+                            "    sel = window.getSelection();\n" +
+                            "    if (sel.rangeCount && sel.getRangeAt) {\n" +
+                            "        range = sel.getRangeAt(0);\n" +
+                            "    }\n" +
+                            "    // Set design mode to on\n" +
+                            "    document.designMode = \"on\";\n" +
+                            "    if (range) {\n" +
+                            "        sel.removeAllRanges();\n" +
+                            "        sel.addRange(range);\n" +
+                            "    }\n" +
+                            "    // Colorize text\n" +
+                            "    document.execCommand(\"BackColor\", false, \"yellow\");\n" +
+                            "    // Set design mode to off\n" +
+                            "    document.designMode = \"off\";\n" +
+                            "    \n" +
+                            "    return window.getSelection().toString();\n" +
+                            "    })()" ,new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String selectedText) {
+                            Log.d("LogName", selectedText); //s is NOT empty!
+                            content = selectedText;
+
+                            Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
+                            addNote(content);
+                        }}
+                    );
+                } else if(HRSActivity.mHrmValue <= 600 && HRSActivity.mHrmValue > 300) {
+                    web.evaluateJavascript("(document.getElementById(\"page-container\").onclick = function() {\n" +
+                            "\t\t// Get Selection\n" +
+                            "    sel = window.getSelection();\n" +
+                            "    if (sel.rangeCount && sel.getRangeAt) {\n" +
+                            "        range = sel.getRangeAt(0);\n" +
+                            "    }\n" +
+                            "    // Set design mode to on\n" +
+                            "    document.designMode = \"on\";\n" +
+                            "    if (range) {\n" +
+                            "        sel.removeAllRanges();\n" +
+                            "        sel.addRange(range);\n" +
+                            "    }\n" +
+                            "    // Colorize text\n" +
+                            "    document.execCommand(\"underline\", false, \"null\");\n" +
+                            "    // Set design mode to off\n" +
+                            "    document.designMode = \"off\";\n" +
+                            "    \n" +
+                            "    return window.getSelection().toString();\n" +
+                            "    })()" ,new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String selectedText) {
+                            Log.d("LogName", selectedText); //s is NOT empty!
+                            content = selectedText;
+
+                            Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
+                            addNote(content);
+                        }}
+                    );
+
+                } else if(HRSActivity.mHrmValue <= 300 && HRSActivity.mHrmValue >= 0) {
+                    web.evaluateJavascript("(document.getElementById(\"page-container\").onclick = function() {\n" +
+                            "\t\t// Get Selection\n" +
+                            "    sel = window.getSelection();\n" +
+                            "    if (sel.rangeCount && sel.getRangeAt) {\n" +
+                            "        range = sel.getRangeAt(0);\n" +
+                            "    }\n" +
+                            "    // Set design mode to on\n" +
+                            "    document.designMode = \"on\";\n" +
+                            "    if (range) {\n" +
+                            "        sel.removeAllRanges();\n" +
+                            "        sel.addRange(range);\n" +
+                            "    }\n" +
+                            "    // Colorize text\n" +
+                            "    document.execCommand(\"ForeColor\", false, \"red\");\n" +
+                            "    // Set design mode to off\n" +
+                            "    document.designMode = \"off\";\n" +
+                            "    \n" +
+                            "    return window.getSelection().toString();\n" +
+                            "    })()" ,new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String selectedText) {
+                            Log.d("LogName", selectedText); //s is NOT empty!
+                            content = selectedText;
+
+                            Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
+                            addNote(content);
+                        }}
+                    );
+                }
+
             }
         });
 
@@ -208,6 +271,11 @@ public class WebViewActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
     public void takeQuiz(MenuItem item) {
         Intent intent= new Intent(this, QuizActivity.class);
         startActivity(intent);
@@ -263,7 +331,7 @@ public class WebViewActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(WebViewActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(WebViewActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
 

@@ -1,125 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fitsSystemWindows="true">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="24dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.scriba.scribacollege.activity.QuizQuestionsActivity"
+    tools:showIn="@layout/activity_quiz_questions">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/content_main"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputSubject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:paddingTop="24dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.example.scriba.scribacollege.activity.QuizQuestionsActivity"
-        tools:showIn="@layout/activity_quiz_questions">
+        android:layout_marginBottom="4sp"
+        android:layout_marginTop="20sp">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4sp"
-            android:layout_marginTop="4sp">
-
-            <EditText
-                android:id="@+id/editTextSubject"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Subject" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4sp"
-            android:layout_marginTop="4sp">
-
-            <EditText
-                android:id="@+id/editTextQuestion"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Question" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4sp"
-            android:layout_marginTop="4sp">
-
-            <EditText
-                android:id="@+id/editTextOptionOne"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Option 1" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4sp"
-            android:layout_marginTop="4sp">
-
-            <EditText
-                android:id="@+id/editTextOptionTwo"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Option 2"
-                android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4sp"
-            android:layout_marginTop="4sp">
-
-            <EditText
-                android:id="@+id/editTextOptionThree"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Option 3" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4sp"
-            android:layout_marginTop="4sp">
-
-            <EditText
-                android:id="@+id/editTextOptionFour"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Option 4"
-                android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4sp"
-            android:layout_marginTop="4sp">
-
-            <EditText
-                android:id="@+id/editTextAnswer"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="Answer"
-                android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
-
-
-
-        <Button
-            android:id="@+id/createQuestion"
+        <EditText
+            android:id="@+id/editTextSubject"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Create Question" />
+            android:hint="Subject" />
+    </android.support.design.widget.TextInputLayout>
 
-    </LinearLayout>
-</ScrollView>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inputSubject"
+        android:layout_marginBottom="4sp"
+        android:layout_marginTop="4sp">
+
+        <EditText
+            android:id="@+id/editTextQuestion"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Question" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputOne"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inputQuestion"
+        android:layout_marginBottom="4sp"
+        android:layout_marginTop="4sp">
+
+        <EditText
+            android:id="@+id/editTextOptionOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Option 1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputTwo"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inputOne"
+        android:layout_marginBottom="4sp"
+        android:layout_marginTop="4sp">
+
+        <EditText
+            android:id="@+id/editTextOptionTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Option 2"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inputTwo"
+        android:layout_marginBottom="4sp"
+        android:layout_marginTop="4sp">
+
+        <EditText
+            android:id="@+id/editTextAnswer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Answer"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputThree"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/inputOne"
+        android:layout_toEndOf="@+id/inputOne"
+        android:layout_toRightOf="@+id/inputOne">
+
+    <EditText
+            android:id="@+id/editTextOptionThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Option 3"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/inputTwo"
+            android:layout_toEndOf="@+id/inputTwo" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputFour"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/inputTwo"
+        android:layout_toEndOf="@+id/inputTwo"
+        android:layout_toRightOf="@+id/inputTwo">
+
+        <EditText
+            android:id="@+id/editTextOptionFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Option 4"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/createQuestion"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inputAnswer"
+        android:layout_marginTop="20sp"
+        android:background="@color/colorPrimary"
+        android:text="Create Question"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

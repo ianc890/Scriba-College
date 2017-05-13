@@ -1,12 +1,14 @@
 package com.example.scriba.scribacollege.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -48,6 +50,7 @@ public class QuizActivity extends AppCompatActivity {
 
     JSONArray jsonFiles = null;
 
+    private TextView scoreTV;
     private TextView questionTV;
     private RadioGroup radioGroup;
     private RadioButton radioOne;
@@ -60,7 +63,9 @@ public class QuizActivity extends AppCompatActivity {
     private QuizQuestion quizQuestion;
     private List<QuizQuestion> questionList = new ArrayList<>();
     Map<String,String> questionsMap;
-    public String answer;
+    public int pos = 0;
+    public int score = 0;
+    public String chosenSubject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,12 @@ public class QuizActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+        chosenSubject = intent.getStringExtra("subject_chosen");
+
+        scoreTV = (TextView) findViewById(R.id.score);
         questionTV = (TextView)findViewById(R.id.quiz_question);
         radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
         radioOne = (RadioButton)findViewById(R.id.radio1);
@@ -87,16 +98,34 @@ public class QuizActivity extends AppCompatActivity {
                 if(radioGroup.getCheckedRadioButtonId() != -1) {
                     int radioSelected = radioGroup.getCheckedRadioButtonId();
 
+                    String answer;
                     String userSelection = getSelectedAnswer(radioSelected);
-                    answer = questionList.get(0).getAnswer();
+                    answer = questionList.get(pos).getAnswer();
 
                     Log.e("ANSWER", answer);
                     Log.e("USER_ANSWER", userSelection);
 
                     if (userSelection.equals(answer)) {
                         Toast.makeText(QuizActivity.this, "Correct answer", Toast.LENGTH_LONG).show();
+                        score++;
+                        pos++;
+
+                        scoreTV.setText(String.valueOf(score));
+
+                        if(pos >= questionList.size()) {
+                            quizFinish();
+                        } else {
+                            nextQuestion(pos);
+                        }
                     } else {
                         Toast.makeText(QuizActivity.this, "Wrong answer", Toast.LENGTH_LONG).show();
+                        pos++;
+
+                        if(pos >= questionList.size()) {
+                            quizFinish();
+                        } else {
+                            nextQuestion(pos);
+                        }
                     }
 
                 } else {
@@ -108,34 +137,80 @@ public class QuizActivity extends AppCompatActivity {
                 radioGroup.clearCheck();
             }
         });
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+    private void nextQuestion(int position) {
+        questionTV.setText(questionList.get(position).getQuestion());
+        radioOne.setText(questionList.get(position).getOptionOne());
+        radioTwo.setText(questionList.get(position).getOptionTwo());
+        radioThree.setText(questionList.get(position).getOptionThree());
+        radioFour.setText(questionList.get(position).getOptionFour());
+    }
+
+    private void quizFinish() {
+        //Creating an alert dialog to confirm quiz has finished
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Quiz finished!");
+        alertDialogBuilder.setMessage("Your score is "+score);
+        alertDialogBuilder.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        // start the upload activity
+                        Intent intent = new Intent(QuizActivity.this, UploadActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        // start the upload activity
+                        Intent intent = new Intent(QuizActivity.this, UploadActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+        // show the alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed(); // closes the current activity and returns to previous activity in the lifecycle
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     private String getSelectedAnswer(int radioSelected) {
         String answerSelected = null;
 
         if(radioSelected == R.id.radio1){
-            answerSelected = questionList.get(0).getOptionOne();
+            answerSelected = questionList.get(pos).getOptionOne();
         }
 
         if(radioSelected == R.id.radio2){
-            answerSelected = questionList.get(0).getOptionTwo();
+            answerSelected = questionList.get(pos).getOptionTwo();
         }
 
         if(radioSelected == R.id.radio3){
-            answerSelected = questionList.get(0).getOptionThree();
+            answerSelected = questionList.get(pos).getOptionThree();
         }
 
         if(radioSelected == R.id.radio4){
-            answerSelected = questionList.get(0).getOptionFour();
+            answerSelected = questionList.get(pos).getOptionFour();
         }
 
         return answerSelected;
@@ -148,7 +223,7 @@ public class QuizActivity extends AppCompatActivity {
         radioFour.setChecked(false);
     }
 
-    protected void showQuestionList(){
+    protected void showQuestionList(int position){
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             jsonFiles = jsonObj.getJSONArray(TAG_RESULTS);
@@ -199,11 +274,11 @@ public class QuizActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        questionTV.setText(questionList.get(0).getQuestion());
-        radioOne.setText(questionList.get(0).getOptionOne());
-        radioTwo.setText(questionList.get(0).getOptionTwo());
-        radioThree.setText(questionList.get(0).getOptionThree());
-        radioFour.setText(questionList.get(0).getOptionFour());
+        questionTV.setText(questionList.get(position).getQuestion());
+        radioOne.setText(questionList.get(position).getOptionOne());
+        radioTwo.setText(questionList.get(position).getOptionTwo());
+        radioThree.setText(questionList.get(position).getOptionThree());
+        radioFour.setText(questionList.get(position).getOptionFour());
     }
 
     class RetrieveJSONData extends AsyncTask<String, Void, String> {
@@ -214,7 +289,7 @@ public class QuizActivity extends AppCompatActivity {
             InputStream inputStream = null;
             String result = null;
             try {
-                URL url = new URL(Config.RETRIEVE_QUESTIONS_URL);
+                URL url = new URL(Config.RETRIEVE_QUESTIONS_URL+"?subject="+chosenSubject);
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
                 inputStream = new BufferedInputStream(con.getInputStream());
@@ -240,7 +315,7 @@ public class QuizActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result){
             myJSON=result;
-            showQuestionList();
+            showQuestionList(pos);
         }
     }
 

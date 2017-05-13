@@ -116,7 +116,7 @@ public class MyFilesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed(); // Closes the activity
+                onBackPressed(); // closes the current activity and returns to previous activity in the lifecycle
                 return true;
             default: return super.onOptionsItemSelected(item);
         }
