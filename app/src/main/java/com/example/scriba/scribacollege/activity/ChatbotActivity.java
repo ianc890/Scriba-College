@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.scriba.scribacollege.R;
@@ -29,7 +30,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIButton.AIBut
     public static final String TAG = ChatbotActivity.class.getName();
 
     private AIButton aiButton;
-    private TextView resultTextView;
+    private TextView jsonResults;
 
     private Gson gson = GsonFactory.getGson();
 
@@ -40,21 +41,38 @@ public class ChatbotActivity extends AppCompatActivity implements AIButton.AIBut
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        resultTextView = (TextView) findViewById(R.id.resultTextView);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        jsonResults = (TextView) findViewById(R.id.resultTextView);
         aiButton = (AIButton) findViewById(R.id.micButton);
 
-        final AIConfiguration config = new AIConfiguration(Config.ACCESS_TOKEN,
+        final AIConfiguration aiConfig = new AIConfiguration(Config.ACCESS_TOKEN,
                 AIConfiguration.SupportedLanguages.English,
                 AIConfiguration.RecognitionEngine.System);
 
-        // config.setRecognizerStartSound(getResources().openRawResourceFd(R.raw.test_start));
-        // config.setRecognizerStopSound(getResources().openRawResourceFd(R.raw.test_stop));
-        // config.setRecognizerCancelSound(getResources().openRawResourceFd(R.raw.test_cancel));
+        // aiConfig.setRecognizerStartSound(getResources().openRawResourceFd(R.raw.test_start));
+        // aiConfig.setRecognizerStopSound(getResources().openRawResourceFd(R.raw.test_stop));
+        // aiConfig.setRecognizerCancelSound(getResources().openRawResourceFd(R.raw.test_cancel));
 
-        aiButton.initialize(config);
+        aiButton.initialize(aiConfig);
         aiButton.setResultsListener(this);
 
         TTS.init(getApplicationContext());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed(); // closes the current activity and returns to previous activity in the lifecycle
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     @Override
@@ -81,7 +99,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIButton.AIBut
             public void run() {
                 Log.d(TAG, "onResult");
 
-                resultTextView.setText(gson.toJson(response));
+                jsonResults.setText(gson.toJson(response));
 
                 Log.i(TAG, "Received success response");
 
@@ -122,7 +140,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIButton.AIBut
             @Override
             public void run() {
                 Log.d(TAG, "onError");
-                resultTextView.setText(error.toString());
+                jsonResults.setText(error.toString());
             }
         });
     }
@@ -133,7 +151,7 @@ public class ChatbotActivity extends AppCompatActivity implements AIButton.AIBut
             @Override
             public void run() {
                 Log.d(TAG, "onCancelled");
-                resultTextView.setText("");
+                jsonResults.setText("");
             }
         });
     }
