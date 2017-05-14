@@ -15,7 +15,7 @@ import com.example.scriba.scribacollege.model.Upload;
 import java.util.List;
 
 /**
- * Created by Ian C on 30/03/2017.
+ * @author Ian Cunningham
  */
 
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.ViewHolder> {

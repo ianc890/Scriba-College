@@ -3,7 +3,7 @@ package com.example.scriba.scribacollege.model;
 import java.io.Serializable;
 
 /**
- * Created by Ian C on 30/04/2017.
+ * @author Ian Cunningham
  */
 
 public class File implements Serializable {

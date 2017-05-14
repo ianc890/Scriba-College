@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by Ian C on 24/09/2016.
+ * @author Ian Cunningham
  */
 
 public class Downloader extends AsyncTask<Void, Integer, String> {

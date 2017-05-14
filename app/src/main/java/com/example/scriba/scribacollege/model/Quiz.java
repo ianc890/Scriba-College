@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Ian C on 05/05/2017.
+ * @author Ian Cunningham
  */
 
 public class Quiz {

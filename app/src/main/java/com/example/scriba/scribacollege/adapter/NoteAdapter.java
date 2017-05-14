@@ -15,7 +15,7 @@ import com.example.scriba.scribacollege.model.Note;
 import java.util.List;
 
 /**
- * Created by Ian C on 05/05/2017.
+ * @author Ian Cunningham
  */
 
 public class NoteAdapter extends ArrayAdapter<Note> implements ListAdapter {

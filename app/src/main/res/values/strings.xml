@@ -59,16 +59,18 @@
     <string name="connect_scriba">Connect Scriba</string>
     <string name="title_activity_quiz_questions">Create Question</string>
     <string name="title_activity_quiz">Quiz</string>
-    <string name="title_activity_notes">NotesActivity</string>
+    <string name="title_activity_notes">Notes</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
     <string name="option_1">Option 1</string>
     <string name="option_2">Option 2</string>
     <string name="option_3">Option 3</string>
     <string name="option_4">Option 4</string>
-    <string name="title_activity_study_plan">StudyPlanActivity</string>
-    <string name="title_activity_create_study_plan">CreateStudyPlanActivity</string>
+    <string name="title_activity_study_plan">View Study Plan</string>
+    <string name="title_activity_create_study_plan">Create Study Plan</string>
 
     <string name="please_select">Please select one</string>
-    <string name="title_activity_chatbot">ChatbotActivity</string>
+    <string name="title_activity_chatbot">Chatbot</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_mind_map">Mind Map</string>
 </resources>

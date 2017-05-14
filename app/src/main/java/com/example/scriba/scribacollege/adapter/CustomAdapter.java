@@ -16,7 +16,7 @@ import com.example.scriba.scribacollege.model.File;
 import java.util.List;
 
 /**
- * Created by Ian C on 30/04/2017.
+ * @author Ian Cunningham
  */
 
 public class CustomAdapter extends ArrayAdapter<File> implements ListAdapter {

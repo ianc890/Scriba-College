@@ -213,7 +213,8 @@ public class UploadActivity extends AppCompatActivity
             Intent intent = new Intent(UploadActivity.this, QuizQuestionsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_share) {
-
+            Intent intent = new Intent(UploadActivity.this, HomeActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_send) {
             Intent intent = new Intent(UploadActivity.this, ChatbotActivity.class);
             startActivity(intent);

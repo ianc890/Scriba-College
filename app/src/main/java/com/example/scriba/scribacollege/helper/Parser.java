@@ -20,7 +20,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Ian C on 24/09/2016.
+ * @author Ian Cunningham
  */
 
 public class Parser extends AsyncTask<Void, Integer, Integer> {

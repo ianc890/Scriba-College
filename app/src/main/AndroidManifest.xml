@@ -45,7 +45,6 @@
             android:label="@string/title_activity_web_view"
             android:theme="@style/ScribaCollegeAppTheme.NoActionBar" />
         <activity android:name=".FingerPaint" />
-        <activity android:name=".activity.Main2Activity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity
             android:name=".activity.MyFilesActivity"
@@ -77,6 +76,14 @@
         <activity
             android:name=".activity.ChatbotActivity"
             android:label="@string/title_activity_chatbot"
+            android:theme="@style/ScribaCollegeAppTheme" />
+        <activity
+            android:name=".activity.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/ScribaCollegeAppTheme" />
+        <activity
+            android:name=".activity.MindMapActivity"
+            android:label="@string/title_activity_mind_map"
             android:theme="@style/ScribaCollegeAppTheme"></activity>
     </application>
 

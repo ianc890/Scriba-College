@@ -1,7 +1,7 @@
 package com.example.scriba.scribacollege.model;
 
 /**
- * Created by Ian C on 12/04/2017.
+ * @author Ian Cunningham.
  */
 
 public class User {
