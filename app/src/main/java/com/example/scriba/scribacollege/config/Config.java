@@ -6,7 +6,7 @@ package com.example.scriba.scribacollege.config;
 
 public class Config {
 
-    public static final String ACCESS_TOKEN = "7efbbf4e74144cf191c50b6d2892d2ca  ";
+    public static final String ACCESS_TOKEN = "a891cef3f08045e7b3c28f84ad8472d5   ";
 
     //URL to our login.php file
 
