@@ -6,6 +6,8 @@ package com.example.scriba.scribacollege.config;
 
 public class Config {
 
+    public static final String ACCESS_TOKEN = "7efbbf4e74144cf191c50b6d2892d2ca  ";
+
     //URL to our login.php file
 
     public static final String SERVER_URL = "http://ianc.x10host.com/ScribaCollege/testing/uploads/";
