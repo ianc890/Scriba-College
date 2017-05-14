@@ -10,8 +10,6 @@ public class Upload{
     public String url;
     public String uid;
 
-    // Default constructor required for calls to
-    // DataSnapshot.getValue(User.class)
     public Upload() {
     }
 

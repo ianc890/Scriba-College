@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.example.scriba.scribacollege.R;
 import com.example.scriba.scribacollege.config.Config;
@@ -30,7 +29,6 @@ public class ChatbotActivity extends AppCompatActivity implements AIButton.AIBut
     public static final String TAG = ChatbotActivity.class.getName();
 
     private AIButton aiButton;
-    private TextView jsonResults;
 
     private Gson gson = GsonFactory.getGson();
 
@@ -43,16 +41,11 @@ public class ChatbotActivity extends AppCompatActivity implements AIButton.AIBut
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        jsonResults = (TextView) findViewById(R.id.resultTextView);
         aiButton = (AIButton) findViewById(R.id.micButton);
 
         final AIConfiguration aiConfig = new AIConfiguration(Config.ACCESS_TOKEN,
                 AIConfiguration.SupportedLanguages.English,
                 AIConfiguration.RecognitionEngine.System);
-
-        // aiConfig.setRecognizerStartSound(getResources().openRawResourceFd(R.raw.test_start));
-        // aiConfig.setRecognizerStopSound(getResources().openRawResourceFd(R.raw.test_stop));
-        // aiConfig.setRecognizerCancelSound(getResources().openRawResourceFd(R.raw.test_cancel));
 
         aiButton.initialize(aiConfig);
         aiButton.setResultsListener(this);
@@ -99,8 +92,6 @@ public class ChatbotActivity extends AppCompatActivity implements AIButton.AIBut
             public void run() {
                 Log.d(TAG, "onResult");
 
-                jsonResults.setText(gson.toJson(response));
-
                 Log.i(TAG, "Received success response");
 
                 // this is example how to get different parts of result object
@@ -140,7 +131,6 @@ public class ChatbotActivity extends AppCompatActivity implements AIButton.AIBut
             @Override
             public void run() {
                 Log.d(TAG, "onError");
-                jsonResults.setText(error.toString());
             }
         });
     }
@@ -151,7 +141,6 @@ public class ChatbotActivity extends AppCompatActivity implements AIButton.AIBut
             @Override
             public void run() {
                 Log.d(TAG, "onCancelled");
-                jsonResults.setText("");
             }
         });
     }

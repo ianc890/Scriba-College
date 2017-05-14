@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
 
     <item
         android:id="@+id/bluetooth"
@@ -17,8 +12,7 @@
     <item
         android:id="@+id/notes"
         android:title="View Notes"
-        app:showAsAction="ifRoom"
-        android:icon="@android:drawable/ic_menu_view"
+        app:showAsAction="never"
         android:onClick="viewNotes"/>
 
     <item
@@ -26,10 +20,4 @@
         android:title="Create Quiz Questions"
         app:showAsAction="never"
         android:onClick="createQuestion"/>
-
-    <item
-        android:id="@+id/quiz"
-        android:title="Take Quiz"
-        app:showAsAction="never"
-        android:onClick="takeQuiz"/>
 </menu>

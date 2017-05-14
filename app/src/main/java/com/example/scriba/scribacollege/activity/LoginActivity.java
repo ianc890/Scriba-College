@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         //If we will get true
         if(loggedIn){
             //We will start the Profile Activity
-            Intent intent = new Intent(this, UploadActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         }
     }
@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("HereFirst", email);
 
                             //Starting profile activity
-                            Intent intent = new Intent(LoginActivity.this, UploadActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intent);
                         }else{
                             //If the server response is not success

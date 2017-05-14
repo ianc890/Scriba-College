@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -57,7 +58,6 @@ public class QuizActivity extends AppCompatActivity {
     private RadioButton radioTwo;
     private RadioButton radioThree;
     private RadioButton radioFour;
-    private Button previousButton;
     private Button nextButton;
 
     private QuizQuestion quizQuestion;
@@ -86,7 +86,6 @@ public class QuizActivity extends AppCompatActivity {
         radioTwo = (RadioButton)findViewById(R.id.radio2);
         radioThree = (RadioButton)findViewById(R.id.radio3);
         radioFour = (RadioButton)findViewById(R.id.radio4);
-        previousButton = (Button) findViewById(R.id.previous);
         nextButton = (Button) findViewById(R.id.next);
 
         RetrieveJSONData retrieve = new RetrieveJSONData();
@@ -158,7 +157,7 @@ public class QuizActivity extends AppCompatActivity {
                     public void onClick(DialogInterface arg0, int arg1) {
 
                         // start the upload activity
-                        Intent intent = new Intent(QuizActivity.this, UploadActivity.class);
+                        Intent intent = new Intent(QuizActivity.this, HomeActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -168,7 +167,7 @@ public class QuizActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         // start the upload activity
-                        Intent intent = new Intent(QuizActivity.this, UploadActivity.class);
+                        Intent intent = new Intent(QuizActivity.this, HomeActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -177,6 +176,12 @@ public class QuizActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.quiz_menu, menu);
+        return true;
     }
 
     @Override
@@ -279,6 +284,11 @@ public class QuizActivity extends AppCompatActivity {
         radioTwo.setText(questionList.get(position).getOptionTwo());
         radioThree.setText(questionList.get(position).getOptionThree());
         radioFour.setText(questionList.get(position).getOptionFour());
+    }
+
+    public void home(MenuItem item) {
+        Intent intent = new Intent(QuizActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 
     class RetrieveJSONData extends AsyncTask<String, Void, String> {

@@ -3,7 +3,6 @@ package com.example.scriba.scribacollege.activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -12,9 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.scriba.scribacollege.R;
-import com.example.scriba.scribacollege.adapter.CustomAdapter;
+import com.example.scriba.scribacollege.adapter.MindMapAdapter;
 import com.example.scriba.scribacollege.config.Config;
-import com.example.scriba.scribacollege.model.File;
+import com.example.scriba.scribacollege.model.MindMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,38 +30,40 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MyFilesActivity extends AppCompatActivity {
+public class MyMindMapsActivity extends AppCompatActivity {
+
     String myJSON;
 
-    private static final String TAG_FILE_ID = "id";
     private static final String TAG_RESULTS = "result";
-    private static final String TAG_FILENAME = "filename";
-    private static final String TAG_FILEPATH = "filepath";
+    private static final String TAG_ROOT = "root";
+    private static final String TAG_LEAF_ONE = "leaf_one";
+    private static final String TAG_LEAF_TWO = "leaf_two";
+    private static final String TAG_LEAF_THREE = "leaf_three";
+    private static final String TAG_LEAF_FOUR = "leaf_four";
+    private static final String TAG_LEAF_FIVE = "leaf_five";
+    private static final String TAG_LEAF_SIX = "leaf_six";
+    private static final String TAG_LEAF_SEVEN = "leaf_seven";
+    private static final String TAG_LEAF_EIGHT = "leaf_eight";
 
     JSONArray jsonFiles = null;
 
-    List<File> filesList;
-    Map<String, String> filesMap;
+    List<MindMap> mindMapList;
+    Map<String, String> mindMapsMap;
     ListView list;
-
-    String fileMsg;
 
     public final static String SER_KEY = "com.easyinfogeek.objectPass.ser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_files);
+        setContentView(R.layout.activity_my_mind_maps);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent2 = getIntent();
-        fileMsg = intent2.getStringExtra("FILE_I_NEED");
-
-        list = (ListView) findViewById(R.id.filesListView);
-        filesList = new ArrayList<>();
+        list = (ListView) findViewById(R.id.mindMapsListView);
+        mindMapList = new ArrayList<>();
 
         RetrieveJSONData retrieve = new RetrieveJSONData();
         retrieve.execute();
@@ -70,40 +71,10 @@ public class MyFilesActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                serializedFile(position);
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                refresh();
+                serializedMindMap(position);
             }
         });
     }
-
-    // refreshes the activity screen
-    private void refresh() {
-        Intent intent = getIntent();
-        overridePendingTransition(0, 0);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        finish();
-        overridePendingTransition(0, 0);
-        startActivity(intent);
-    }
-
-    // sends the serialized file object to the WebView Activty
-    public void serializedFile(int position) {
-        File file = filesList.get(position);
-        Intent mIntent = new Intent(this, WebViewActivity.class);
-        Bundle mBundle = new Bundle();
-        mBundle.putSerializable(SER_KEY, file);
-        mIntent.putExtras(mBundle);
-
-        startActivity(mIntent);
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -121,6 +92,17 @@ public class MyFilesActivity extends AppCompatActivity {
         finish();
     }
 
+    // sends the serialized file object to the WebView Activty
+    public void serializedMindMap(int position) {
+        MindMap mindMap = mindMapList.get(position);
+        Intent mIntent = new Intent(this, ViewMindMapActivity.class);
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable(SER_KEY, mindMap);
+        mIntent.putExtras(mBundle);
+
+        startActivity(mIntent);
+    }
+
     protected void showList() {
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
@@ -128,41 +110,59 @@ public class MyFilesActivity extends AppCompatActivity {
 
             for (int i = 0; i < jsonFiles.length(); i++) {
 
-                int id = 0;
-                String filename = null;
-                String filepath = null;
+                String root = null;
+                String leafOne = null;
+                String leafTwo = null;
+                String leafThree = null;
+                String leafFour = null;
+                String leafFive = null;
+                String leafSix = null;
+                String leafSeven = null;
+                String leafEight = null;
+
 
                 try {
                     JSONObject c = jsonFiles.getJSONObject(i);
                     {
 
                     }
-                    id = c.getInt("id");
-                    filename = c.getString(TAG_FILENAME);
-                    filepath = c.getString(TAG_FILEPATH);
+                    root = c.getString(TAG_ROOT);
+                    leafOne = c.getString(TAG_LEAF_ONE);
+                    leafTwo = c.getString(TAG_LEAF_TWO);
+                    leafThree = c.getString(TAG_LEAF_THREE);
+                    leafFour = c.getString(TAG_LEAF_FOUR);
+                    leafFive = c.getString(TAG_LEAF_FIVE);
+                    leafSix = c.getString(TAG_LEAF_SIX);
+                    leafSeven = c.getString(TAG_LEAF_SEVEN);
+                    leafEight = c.getString(TAG_LEAF_EIGHT);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                filesMap = new HashMap<String, String>();
+                mindMapsMap = new HashMap<String, String>();
 
-                filesMap.put(TAG_FILE_ID, String.valueOf(id));
-                filesMap.put(TAG_FILENAME, filename);
-                filesMap.put(TAG_FILEPATH, filepath);
+                mindMapsMap.put(TAG_ROOT, root);
+                mindMapsMap.put(TAG_LEAF_ONE, leafOne);
+                mindMapsMap.put(TAG_LEAF_TWO, leafTwo);
+                mindMapsMap.put(TAG_LEAF_THREE, leafThree);
+                mindMapsMap.put(TAG_LEAF_FOUR, leafFour);
+                mindMapsMap.put(TAG_LEAF_FIVE, leafFive);
+                mindMapsMap.put(TAG_LEAF_SIX, leafSix);
+                mindMapsMap.put(TAG_LEAF_SEVEN, leafSeven);
+                mindMapsMap.put(TAG_LEAF_EIGHT, leafEight);
 
-                File file = new File(id, filename, filepath);
-                filesList.add(file);
+                MindMap mindMap = new MindMap(root, leafOne, leafTwo, leafThree, leafFour, leafFive, leafSix, leafSeven, leafEight);
+                mindMapList.add(mindMap);
             }
 
-            CustomAdapter adapter = new CustomAdapter(MyFilesActivity.this, R.layout.files_listview_item, filesList);
+            MindMapAdapter adapter = new MindMapAdapter(MyMindMapsActivity.this, R.layout.list_view_string, mindMapList);
 
             list.setAdapter(adapter);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     class RetrieveJSONData extends AsyncTask<String, Void, String> {
@@ -173,7 +173,7 @@ public class MyFilesActivity extends AppCompatActivity {
             InputStream inputStream = null;
             String result = null;
             try {
-                URL url = new URL(Config.RETRIEVE_FILES_URL);
+                URL url = new URL(Config.RETRIEVE_MIND_MAPS_URL);
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
                 inputStream = new BufferedInputStream(con.getInputStream());
@@ -203,5 +203,5 @@ public class MyFilesActivity extends AppCompatActivity {
             showList();
         }
     }
-}
 
+}

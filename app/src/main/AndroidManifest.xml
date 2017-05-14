@@ -33,18 +33,9 @@
         </activity>
         <activity android:name=".activity.SignupActivity" />
         <activity
-            android:name=".activity.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/ScribaCollegeAppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.FilesActivity"
-            android:label="@string/title_activity_files"
-            android:theme="@style/ScribaCollegeAppTheme.NoActionBar" />
-        <activity
             android:name=".activity.WebViewActivity"
             android:label="@string/title_activity_web_view"
             android:theme="@style/ScribaCollegeAppTheme.NoActionBar" />
-        <activity android:name=".FingerPaint" />
         <activity android:name=".activity.ProfileActivity" />
         <activity
             android:name=".activity.MyFilesActivity"
@@ -84,6 +75,14 @@
         <activity
             android:name=".activity.MindMapActivity"
             android:label="@string/title_activity_mind_map"
+            android:theme="@style/ScribaCollegeAppTheme" />
+        <activity
+            android:name=".activity.MyMindMapsActivity"
+            android:label="@string/title_activity_my_mind_maps"
+            android:theme="@style/ScribaCollegeAppTheme" />
+        <activity
+            android:name=".activity.ViewMindMapActivity"
+            android:label="@string/title_activity_view_mind_map"
             android:theme="@style/ScribaCollegeAppTheme"></activity>
     </application>
 

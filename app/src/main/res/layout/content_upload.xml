@@ -14,45 +14,45 @@
     tools:showIn="@layout/app_bar_main">
 
     <TextView
+        android:id="@+id/tvHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="18sp"
-        android:id="@+id/tvHeading"
         android:text="Touch the icon below to upload file to server"
         android:textColor="#000"
-        android:textStyle="bold"/>
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/ivAttachment"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@android:drawable/ic_menu_add"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:src="@android:drawable/ic_menu_add" />
 
     <TextView
         android:id="@+id/tv_file_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
         android:layout_below="@+id/ivAttachment"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold"/>
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:textStyle="bold" />
 
     <Button
+        android:id="@+id/b_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/b_upload"
-        android:text="Upload"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
         android:gravity="center"
+        android:text="Upload"
         android:textColor="#fff"
-        android:background="@color/colorPrimary"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

@@ -37,6 +37,12 @@ public class Config {
 
     public static final String RETRIEVE_SUBJECTS_URL = "http://ianc.x10host.com/ScribaCollege/testing/getSubjects.php";
 
+    public static final String CREATE_MIND_MAP_URL = "http://ianc.x10host.com/ScribaCollege/testing/createMindMap.php";
+
+    public static final String RETRIEVE_MIND_MAPS_URL = "http://ianc.x10host.com/ScribaCollege/testing/getMindMaps.php";
+
+
+
     // email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";

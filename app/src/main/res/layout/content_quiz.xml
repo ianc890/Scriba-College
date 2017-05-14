@@ -100,29 +100,16 @@
 
     <Button
         android:id="@+id/next"
-        android:layout_width="160dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/previous"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/next"
-        android:textColor="@color/white" />
-
-    <Button
-        android:id="@+id/previous"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/radioGroup"
-        android:layout_alignStart="@+id/radioGroup"
+        android:textColor="@color/white"
         android:layout_below="@+id/radioGroup"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="@string/previous"
-        android:textColor="@color/white" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp" />
+
 
 </RelativeLayout>

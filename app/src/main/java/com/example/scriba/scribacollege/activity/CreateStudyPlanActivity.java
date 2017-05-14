@@ -85,7 +85,6 @@ public class CreateStudyPlanActivity extends AppCompatActivity {
 
     private TableLayout tableLayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

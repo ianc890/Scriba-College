@@ -106,14 +106,6 @@ public class QuizQuestionsActivity extends AppCompatActivity {
 
         final QuizQuestion quizQuestion = new QuizQuestion(subject, question, optionOne, optionTwo, optionThree, optionFour, answer);
 
-        /*quizQuestion.setSubject(editTextSubject.getText().toString());
-        quizQuestion.setQuestion(editTextQuestion.getText().toString());
-        quizQuestion.setOptionOne(editTextOptionOne.getText().toString());
-        quizQuestion.setOptionTwo(editTextOptionTwo.getText().toString());
-        quizQuestion.setOptionThree(editTextOptionThree.getText().toString());
-        quizQuestion.setOptionFour(editTextOptionFour.getText().toString());
-        quizQuestion.setAnswer(editTextAnswer.getText().toString());
-*/
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.INSERT_QUESTION_URL,
                 new Response.Listener<String>() {
                     @Override

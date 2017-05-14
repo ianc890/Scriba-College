@@ -53,26 +53,15 @@ public class WebViewActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*Intent intent = getIntent();
-        myFileUrl = intent.getStringExtra("file");
-        Log.i("HERE", myFileUrl);*/
-
         file = (File)getIntent().getSerializableExtra(MyFilesActivity.SER_KEY);
         myFileUrl = ""+Config.SERVER_URL+file.getFilename();
 
-        String url = "http://docs.google.com/gview?embedded=true&url="+myFileUrl;
-        String googleDocsUrl = "http://docs.google.com/viewer?url="+myFileUrl;
-        String fileViewer = "https://view.officeapps.live.com/op/view.aspx?src="+myFileUrl;
-        //String document = "<iframe src='"+url+"' width='100%' height='100%' style='border: none;'></iframe>";
         web = (WebView) findViewById(R.id.webView1);
-        //web.setWebChromeClient(new MyWebChromeClient());
         web.setWebViewClient(new AppWebViewClients());
         web.getSettings().setJavaScriptEnabled(true);
         web.getSettings().getJavaScriptCanOpenWindowsAutomatically();
         web.getSettings().setLoadWithOverviewMode(true);
         web.getSettings().setBuiltInZoomControls(true);
-        //web.getSettings().setAllowFileAccess(true);
-
         web.getSettings().setUseWideViewPort(true);
         web.getSettings().setDisplayZoomControls(false);
 
@@ -80,9 +69,6 @@ public class WebViewActivity extends AppCompatActivity {
         String fileAsHtml = "https://api.cloudconvert.com/convert?apikey=5vSL13LMgZHuzUFX8t4pSlKdOkz2AKKYA6dIWFQkAkkv5YhbnHTPzVSMOV2dDMw5qz2JAyInzl1uR1-l8QTYxA&inputformat="+fileExtension+"&outputformat=html&input=download&file="+myFileUrl+"&wait=true&download=inline";
 
         web.loadUrl(fileAsHtml);
-       // web.loadData(fileViewer, "text/html", "UTF-8");
-
-        //web.setSelected(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +89,7 @@ public class WebViewActivity extends AppCompatActivity {
                             "        sel.addRange(range);\n" +
                             "    }\n" +
                             "    // Colorize text\n" +
-                            "    document.execCommand(\"BackColor\", false, \"yellow\");\n" +
+                            "    document.execCommand(\"ForeColor\", false, \"red\");\n" +
                             "    // Set design mode to off\n" +
                             "    document.designMode = \"off\";\n" +
                             "    \n" +
@@ -162,7 +148,7 @@ public class WebViewActivity extends AppCompatActivity {
                             "        sel.addRange(range);\n" +
                             "    }\n" +
                             "    // Colorize text\n" +
-                            "    document.execCommand(\"ForeColor\", false, \"red\");\n" +
+                            "    document.execCommand(\"BackColor\", false, \"yellow\");\n" +
                             "    // Set design mode to off\n" +
                             "    document.designMode = \"off\";\n" +
                             "    \n" +
@@ -208,14 +194,9 @@ public class WebViewActivity extends AppCompatActivity {
             mActionMode = mode;
 
             Menu menu = mode.getMenu();
-          // MenuItem item1 = menu.findItem(android.R.id.selectAll);
-           // item1.setVisible(false);
 
             menu.clear();
             mode.getMenuInflater().inflate(R.menu.actionmode, menu);
-
-            //menu.add(0, R.id.action_share, 1, "Clear Format");
-
         }
 
         super.onActionModeStarted(mode);
@@ -263,9 +244,6 @@ public class WebViewActivity extends AppCompatActivity {
             case R.id.createQuestion:
                 createQuestion(item);
                 return true;
-            case R.id.quiz:
-                takeQuiz(item);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -274,11 +252,6 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-    }
-
-    public void takeQuiz(MenuItem item) {
-        Intent intent= new Intent(this, QuizActivity.class);
-        startActivity(intent);
     }
 
     public void createQuestion(MenuItem item) {

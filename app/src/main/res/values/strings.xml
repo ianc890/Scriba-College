@@ -73,4 +73,6 @@
     <string name="title_activity_chatbot">Chatbot</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_mind_map">Mind Map</string>
+    <string name="title_activity_my_mind_maps">MyMindMapsActivity</string>
+    <string name="title_activity_view_mind_map">ViewMindMapActivity</string>
 </resources>
